@@ -50,6 +50,17 @@ pipeline {
                  sh "kubectl apply -f eks_deploy_from_ecr.yml"
                 }
             }
+            
+        } 
+
+        //deploy Permission
+        stage ("Kube Deploy - Permission") {
+            steps {
+                withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'eks_credential', namespace: '', serverUrl: '') {
+                 sh "kubectl apply -f eks-console-full-access.yaml"
+                }
+            }
+            
         } 
               
     }
