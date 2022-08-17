@@ -50,16 +50,7 @@ pipeline {
                  sh "kubectl apply -f eks_deploy_from_ecr.yml"
                 }
             }
-            //deploy role and role binding 
-        stage ("Kube deploy - Permission") {
-            steps {
-                withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'eks_credential', namespace: '', serverUrl: '') {
-                 sh "kubectl apply -f eks-console-full-access.yaml"
-                }
-            }            
-
-        }
-            
-        }
+        } 
+              
     }
 }
